@@ -3,22 +3,23 @@ package structs
 import (
 	"crypto/rand"
 	"fmt"
-	"github.com/Pallinder/go-randomdata"
-	"github.com/kazoup/structs/content"
-	"github.com/kazoup/structs/intmap"
-	"github.com/kazoup/structs/metadata"
-	"github.com/kazoup/structs/permissions"
 	"mime"
 	"os"
 	"path/filepath"
 	"strings"
 	"time"
+
+	"github.com/Pallinder/go-randomdata"
+	"github.com/kazoup/structs/content"
+	"github.com/kazoup/structs/intmap"
+	"github.com/kazoup/structs/metadata"
+	"github.com/kazoup/structs/permissions"
 )
 
 // File model
 type File struct {
-	ExistsOnDisk    bool                    `json:"exists_on_disk"`
-	ID              string                  `json:"_id"`
+	ExistsOnDisk bool `json:"exists_on_disk"`
+	//ID              string                  `json:"_id"`
 	ArchiveComplete bool                    `json:"archive_complete"`
 	FirstSeen       time.Time               `json:"first_seen"`
 	IDB64           string                  `json:"id_b64"`
@@ -39,8 +40,8 @@ type LocalFile struct {
 func NewFileFromLocal(lf *LocalFile) *File {
 	return &File{
 		//ID:              "/" + lf.Path + ":" + strconv.FormatInt(lf.Info.ModTime().Unix(), 10),
-		ExistsOnDisk:    true,
-		ID:              pseudoUUID(),
+		ExistsOnDisk: true,
+		//	ID:              pseudoUUID(),
 		ArchiveComplete: false,
 		FirstSeen:       time.Now(),
 		Content:         content.Content{},
@@ -104,8 +105,8 @@ func NewMockFile() *File {
 	mockFile.GenerateData()
 
 	return &File{
-		ExistsOnDisk:    true,
-		ID:              pseudoUUID(),
+		ExistsOnDisk: true,
+		//ID:              pseudoUUID(),
 		ArchiveComplete: randomdata.Boolean(),
 		FirstSeen: time.Date(
 			randomdata.Number(1990, 2015),
